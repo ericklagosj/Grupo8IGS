@@ -1,0 +1,103 @@
+<head>
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" type="text/css" href="static/css/ListU.css">
+    <style>
+        /* ListU.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Lista de Usuarios</h2>
+
+    <a href="/usuario/formulario">Crear Usuario</a>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.telefono}"></td>
+            <td th:text="${usuario.rol}"></td>
+            <td>
+                <a th:href="@{/usuario/editarUsuario/{id}(id=${usuario.id})}">Editar</a>
+                <a th:href="@{/usuario/cambiarContrasena/{id}(id=${usuario.id})}">Cambiar Contraseña</a>
+                <form th:action="@{/usuario/enviarCredenciales/{id}(id=${usuario.id})}" method="post">
+                    <button type="submit">Enviar Credenciales</button>
+                </form>
+                <a th:href="@{/usuario/eliminarUsuario/{id}(id=${usuario.id})}"
+                    onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <button type="button" onclick="location.href='/'">Volver al inicio</button>
+
+</body>
+
+</html>     

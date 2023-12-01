@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./../static/css/index.css">
+    <style>/* index.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+           
+           
+            padding-top: 0%;
+            padding-bottom: 20%;
+            border-radius: 5%;
+            clear: both;
+            justify-content: center;
+        }
+        #h{
+            background-color:#ffffff   ;
+            width: 100%;
+            position: fixed;
+            height: 320px;
+            display:flex;
+            align-items: center;
+            margin: 0%;  
+        }
+        
+        #j{
+          justify-content: center;
+            width: 100%;
+            position: fixed;
+            height: 320px;
+            align-items: center;
+            margin-top: 320px; 
+            display:grid;
+             background-color: #6376cb;
+        }    
+        h2 {
+            color: #337ab7;
+            margin-left: 30%;
+        }
+        
+        p {
+            font-size: 18px;
+        }
+        
+        button {
+            background-color: #5bc0de;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        button:hover {
+          
+            background-color: #FFFA12;
+            border-radius: 3px;
+            border: 3px solid rgb(193, 124, 60);
+            
+        }
+        
+        /* Agrega estilos específicos para los botones si es necesario */
+        /* Por ejemplo, si deseas estilos diferentes para cada tipo de botón */
+        
+        /* Estilo para el botón de Usuarios */
+        button:nth-of-type(1) {
+            background-color: #d9534f;
+        }
+        
+        /* Estilo para el botón de Crear Usuario */
+        button:nth-of-type(2) {
+            background-color: #5cb85c;
+        }
+        
+        /* Estilo para el botón de Empresas */
+        button:nth-of-type(3) {
+            background-color: #f0ad4e;
+        }
+        
+        /* Estilo para el botón de Crear Empresa */
+        button:nth-of-type(4) {
+            background-color: #5bc0de;
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <div id=h>
+            <img src="../static/img/descarga.png" alt="logo" class="logo">
+            <h2>Bienvenido al sistema de Grupo 8 S2</h2>
+        </div>
+        <div id="container">    
+            <div id="j">
+                <p style="color:white">¡Has ingresado correctamente!</p>
+                <br>
+
+                <button type="button" onclick="location.href='/usuario/lista'">Usuarios</button>
+                <button type="button" onclick="location.href='/usuario/formulario'">Crear Usuario</button>
+                <button type="button" onclick="location.href='/empresa/lista'">Empresas</button>
+                <button type="button" onclick="location.href='/empresa/formulario'">Crear Empresa</button>
+            </div>
+        </div>
+    </header>
+</body>
+</html>

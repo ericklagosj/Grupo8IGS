@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Empresa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./../static/css/formularioEmpresa.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6376cb  ;    
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        #h{
+            
+            background-color: #ffffff  ;
+            text-align: center;
+            color: #6376cb;
+            display: inline;
+           
+        }
+        h2 {
+            color: #6376cb;
+            background-color: #ffffff  ;
+            margin: 0px;
+            padding: 20px;
+            text-align: center;
+            align-items: center;
+        }
+        #container{
+            background-color: #ffffff  ;
+            width: 10%;
+            position: fixed;
+            height: 120px;
+            display:flex;
+            align-items: center;
+            margin: 0%; 
+            text-align: center;
+        }
+        #j{
+            background-color: #6376cb;
+            width: 100%;
+            margin-left: auto;
+       
+            height: 30px;
+            align-items: center;
+            margin-top: 100px; 
+
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #5bc0de;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        button:hover {
+            background-color: #31b0d5;
+        }
+        
+        /* Estilo para el botón "Cancelar" */
+        button[type="button"] {
+            background-color: #d9534f;
+        }
+        
+        button[type="button"]:hover {
+            background-color: #c9302c;
+        }
+        </style>
+</head>
+<body>
+<div id="h">
+    <div id=container>
+        <img src="descarga.png" alt="logo" class="logo">
+        <h2>Formulario de Empresa</h2>
+    </div>
+</div>
+<div id =j>
+<form action="/empresa/guardarEmpresa" method="post" th:object="${empresa}">
+    <p>Id: <input type="text" th:field="*{id}"/></p>
+    <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+    <p>Telefono: <input type="text" th:field="*{telefono}"/></p>
+    <p>Direccion: <input type="text" th:field="*{direccion}"/></p>
+    <p>Correo: <input type="text" th:field="*{email}"/></p>
+    <p>ID CENS: <input type="text" th:field="*{id_cens}"/></p>
+    <p>ID Anexo Tec: <input type="text" th:field="*{id_anexo_tec}"/></p>
+    <p>Promedio AT: <input type="text" th:field="*{promedio_at}"/></p>
+    <p>Promedio CENS: <input type="text" th:field="*{promedio_cens}"/></p>
+    <button type="submit">Guardar</button>
+    <button type="button" onclick="location.href='/'">Cancelar</button>
+</div>
+</form>
+</body>
+</html>
