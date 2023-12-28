@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Promedio General</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        div.promedio-general {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        p {
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        select {
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #388E3C;
+        }
+
+        .error {
+            color: red;
+            font-style: italic;
+        }
+
+        .promedio-general h2 {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .promedio-general p {
+            margin-bottom: 10px;
+        }
+
+        .promedio-general .observaciones {
+            margin-top: 10px;
+        }
+
+        .promedio-general form {
+            margin-top: 20px;
+        }
+
+        .promedio-general .botones {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Detalle del Promedio General</h1>
+
+    <div th:object="${promedioGeneral}">
+        <p>ID: <span th:text="*{id}"></span></p>
+        <p>Empresa: <span th:text="*{empresa.nombre}"></span></p>
+        <p>Visador: <span th:text="${promedioGeneral.visador?.nombre}"></span></p>
+        <p>Estado: <span th:text="*{estado}"></span></p>
+        <p>Promedio Final: <span th:text="*{promedioFinal}"></span></p>
+
+        <p>NotaCompatibilidad: <span th:text="${promedioGeneral.notaCompatibilidad}"></span></p>
+        <p>NotaUsabilidad: <span th:text="${promedioGeneral.notaUsabilidad}"></span></p>
+        <p>NotaFiabilidad: <span th:text="${promedioGeneral.notaFiabilidad}"></span></p>
+        <p>NotaSeguridad: <span th:text="${promedioGeneral.notaSeguridad}"></span></p>
+
+        <h2>Observaciones</h2>
+        <p th:text="*{observaciones}"></p>
+
+        <form action="/promedio/guardarObservaciones" method="post"
+            th:if="${promedioGeneral.estado == T(s2.grupo8.model.EstadoPromedio).PENDIENTE and promedioGeneral.notaCompatibilidad != 0 and promedioGeneral.notaUsabilidad != 0 and promedioGeneral.notaFiabilidad != 0 and promedioGeneral.notaSeguridad != 0}">
+            <input type="hidden" name="promedioId" th:value="${promedioGeneral.id}">
+            <label for="observaciones">Agregar Observaciones:</label>
+            <textarea id="observaciones" name="observaciones" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Guardar Observaciones">
+        </form>
+
+        <form action="/promedio/guardarYVisar" method="post"
+            th:if="${promedioGeneral.estado == T(s2.grupo8.model.EstadoPromedio).PENDIENTE and promedioGeneral.notaCompatibilidad != 0 and promedioGeneral.notaUsabilidad != 0 and promedioGeneral.notaFiabilidad != 0 and promedioGeneral.notaSeguridad != 0}">
+            <input type="hidden" name="promedioId" th:value="${promedioGeneral.id}">
+            <input type="hidden" name="estado" value="VISADO">
+            <input type="submit" value="Guardar y Visar">
+        </form>
+
+        <form action="/promedio/guardarYPendiente" method="post"
+            th:if="${promedioGeneral.estado == T(s2.grupo8.model.EstadoPromedio).VISADO}">
+            <input type="hidden" name="promedioId" th:value="${promedioGeneral.id}">
+            <input type="hidden" name="estado" value="PENDIENTE">
+            <input type="submit" value="Poner en estado = Pendiente">
+        </form>
+
+        <form action="/pdf/generate" method="get">
+            <input type="hidden" name="promedioId" th:value="${promedioGeneral.id}">
+            <input type="submit" value="Generar Informe">
+        </form>
+
+        <br>
+        <button type="button" onclick="location.href='/promedio/lista'">Volver a Promedios</button>
+
+</body>
+
+</html>

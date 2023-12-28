@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Evaluación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #ffffff;
+        }
+
+        #h {
+            background-color: #337ab7;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        select {
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #0972ce;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fceded;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Detalles de la Evaluación</h2>
+
+    <div id="h">
+        <form th:action="@{/evaluaciones/guardarEvaluacion}" method="post" id="evaluacionForm">
+            <input type="hidden" th:field="${evaluacion.id}" />
+
+            <label>ID:</label>
+            <input type="text" th:value="${evaluacion.id}" readonly="readonly" /><br />
+
+            <label>Empresa:</label>
+            <span th:text="${evaluacion.empresa.nombre}"></span><br />
+
+            <label>Tipo:</label>
+            <input type="text" th:field="${evaluacion.tipo}" readonly="readonly" /><br />
+
+            <label>Estado:</label>
+            <input type="text" th:field="${evaluacion.estado}" readonly="readonly" /><br />
+
+            <label>Pregunta 1:</label>
+            <select th:field="${evaluacion.pregunta1}" required="required" class="pregunta" data-index="1"
+                name="pregunta1">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br />
+
+            <label>Pregunta 2:</label>
+            <select th:field="${evaluacion.pregunta2}" required="required" class="pregunta" data-index="2"
+                name="pregunta2">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br />
+
+            <label>Pregunta 3:</label>
+            <select th:field="${evaluacion.pregunta3}" required="required" class="pregunta" data-index="3"
+                name="pregunta3">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br />
+
+            <label>Pregunta 4:</label>
+            <select th:field="${evaluacion.pregunta4}" required="required" class="pregunta" data-index="4"
+                name="pregunta4">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br />
+
+            <label>Pregunta 5:</label>
+            <select th:field="${evaluacion.pregunta5}" required="required" class="pregunta" data-index="5"
+                name="pregunta5">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br />
+
+            <button type="submit">Guardar</button>
+        </form>
+        <br>
+        <button type="button" onclick="location.href='/evaluaciones/lista'">Volver a Evaluaciones</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('#evaluacionForm');
+            var notaInput = form.querySelector('[th\\:field="${evaluacion.nota}"]');
+            var preguntasSelects = form.querySelectorAll('.pregunta');
+
+            function calcularNota() {
+                var sumaPreguntas = 0;
+                preguntasSelects.forEach(function (select) {
+                    sumaPreguntas += parseInt(select.value);
+                });
+                notaInput.value = sumaPreguntas;
+            }
+
+            preguntasSelects.forEach(function (select) {
+                select.addEventListener('change', calcularNota);
+            });
+
+            calcularNota();
+        });
+    </script>
+
+</body>
+
+</html>

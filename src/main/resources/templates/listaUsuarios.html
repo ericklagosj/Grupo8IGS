@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" type="text/css" href="static/css/ListU.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th,
+        td {
+            padding: 8px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 40px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilos para el Encabezado */
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border-bottom: 2px solid #1a252f;
+            /* Añadido: borde inferior */
+        }
+
+        .imglogo {
+            float: left;
+            max-width: 120px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .ListE {
+            font-size: 40px;
+            margin-right: 150px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+            color: #ecf0f1;
+            /* Texto en blanco */
+            text-shadow: 4px 4px 2px #050505;
+            /* Sombra suave */
+        }
+
+        /* Estilos para el Pie de Página */
+        footer {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            border-top: 2px solid #1a252f;
+            /* Añadido: borde superior */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="/img/logotipo-cens.svg" class="imglogo" alt="Logo" />
+        <h1 class="ListE">Lista de Usuarios</h1>
+    </header>
+
+    <button type="button" onclick="location.href='/empresa/lista'">Empresas</button>
+    <button type="button" onclick="location.href='/evaluaciones/lista'">Evaluaciones</button>
+    <button type="button" onclick="location.href='/promedio/lista'">Promedios</button>
+    <button type="button" onclick="location.href='/usuario/formulario'">Crear Usuario</button>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.telefono}"></td>
+            <td th:text="${usuario.rol}"></td>
+            <td>
+                <a th:href="@{/usuario/editarUsuario/{id}(id=${usuario.id})}">Editar</a>
+                <a th:href="@{/usuario/cambiarContrasena/{id}(id=${usuario.id})}">Cambiar Contraseña</a>
+                <form th:action="@{/usuario/enviarCredenciales/{id}(id=${usuario.id})}" method="post">
+                    <button type="submit">Enviar Credenciales</button>
+                </form>
+                <a th:href="@{/usuario/eliminarUsuario/{id}(id=${usuario.id})}"
+                    onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <button type="button" onclick="location.href='/'">Volver al inicio</button>
+
+</body>
+
+</html>

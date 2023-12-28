@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Inicio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./../static/css/index.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            text-align: center;
+            padding: 1px 0;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2px;
+            /* Ajusta este valor según tus preferencias */
+        }
+
+        .logo {
+            max-width: 200px;
+            border-radius: 50%;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-top: 2px;
+        }
+
+        #container {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        #j {
+            text-align: center;
+            background-color: #3498db;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Estilo para el botón de Usuarios */
+        button:nth-of-type(1) {
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        /* Estilo para el botón de Crear Usuario */
+        button:nth-of-type(2) {
+            background-color: #2ec1cc;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        /* Estilo para el botón de Empresas */
+        button:nth-of-type(3) {
+            background-color: #f39c12;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        /* Estilo para el botón de Crear Empresa */
+        button:nth-of-type(4) {
+            background-color: #d534db;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        button:nth-of-type(5) {
+            background-color: #dbd334;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        button:nth-of-type(6) {
+            background-color: #34db98;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        /* Otros estilos para los botones */
+        button:hover {
+            background-color: #c1c085;
+            border: 3px solid #fb0101;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="img/logotipo-cens.png" alt="logo" class="logo" />
+        <h2>Bienvenido al sistema del Grupo 8 S2</h2>
+    </header>
+
+    <div id="container">
+        <div id="j">
+            <p>¡Has ingresado correctamente!</p>
+
+            <button type="button" onclick="location.href='/usuario/lista'">Usuarios</button>
+            <button type="button" onclick="location.href='/usuario/formulario'">Crear Usuario</button>
+            <button type="button" onclick="location.href='/empresa/lista'">Empresas</button>
+            <button type="button" onclick="location.href='/empresa/formulario'">Crear Empresa</button>
+            <button type="button" onclick="location.href='/evaluaciones/lista'">Evaluaciones</button>
+            <button type="button" onclick="location.href='/promedio/lista'">Promedios</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 CENS - Todos los derechos reservados</p>
+    </footer>
+</body>
+
+</html>

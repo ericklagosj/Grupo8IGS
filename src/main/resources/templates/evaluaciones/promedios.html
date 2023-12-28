@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./promedios.html">
+  <title>Listado de Promedios Generales</title>
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3498db;
+    margin: 10px;
+    display: inline-block;
+  }
+
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #3498db;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* Estilos para el Encabezado */
+  header {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border-bottom: 2px solid #1a252f;
+  }
+
+  .imglogo {
+    float: left;
+    max-width: 120px;
+    height: auto;
+    margin-right: 15px;
+  }
+
+  .ListE {
+    font-size: 40px;
+    margin-right: 150px;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: bold;
+    color: #ecf0f1;
+    /* Texto en blanco */
+    text-shadow: 4px 4px 2px #050505;
+    /* Sombra suave */
+  }
+
+  /* Estilos para el Pie de Página */
+  footer {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 2px solid #1a252f;
+    /* Añadido: borde superior */
+  }
+</style>
+<body>
+
+<header>
+  <img src="/img/logotipo-cens.svg" class="imglogo" alt="Logo" />
+  <h1 class="ListE">Listado de Promedios Generales</h1>
+</header>
+
+<div id="tabla1">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Empresa</th>
+        <th>Visador</th>
+        <th>Estado</th>
+        <th>Promedio Final</th>
+        <th>Observaciones</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+<tr th:each="promedioGeneral : ${promediosGenerales}">
+<td th:text="${promedioGeneral.id}"></td>
+<td th:text="${promedioGeneral.empresa.nombre}"></td>
+<td th:text="${promedioGeneral?.visador?.nombre}"></td>
+<td th:text="${promedioGeneral.estado}"></td>
+<td th:text="${promedioGeneral.promedioFinal}"></td>
+<td th:text="${promedioGeneral.observaciones}"></td>
+<td>
+  <a th:href="@{'/promedio/ver/' + ${promedioGeneral.id}}">Ver</a>
+  <a th:href="@{'/promedio/asignarVisador/' + ${promedioGeneral.id}}">Asignar Visador</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="tabla2">
+<h2>Evaluaciones por Empresa</h2>
+
+<table>
+<thead>
+<tr>
+<th>Promedio ID</th>
+<th>Empresa</th>
+<th>NotaCompatibilidad</th>
+<th>NotaUsabilidad</th>
+<th>NotaFiabilidad</th>
+<th>NotaSeguridad</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="promedioGeneral : ${promediosGenerales}">
+<td th:text="${promedioGeneral.id}"></td>
+<td th:text="${promedioGeneral.empresa.nombre}"></td>
+<td th:text="${promedioGeneral.notaCompatibilidad}"></td>
+<td th:text="${promedioGeneral.notaUsabilidad}"></td>
+<td th:text="${promedioGeneral.notaFiabilidad}"></td>
+<td th:text="${promedioGeneral.notaSeguridad}"></td>
+</tr>
+</tbody>
+</table>
+
+<br>
+<button type="button" onclick="location.href='/'">Volver al inicio</button>
+</div>
+
+<footer>
+<p>&copy; 2023 CENS - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>

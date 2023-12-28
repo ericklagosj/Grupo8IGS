@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Seguridad</title>
+</head>
+<body>
+
+<h2>Formulario de Seguridad</h2>
+
+<form action="/evaluaciones/guardarSeguridad" method="post" th:object="${evaluacion}">
+    <label for="pregunta1">Pregunta 1:</label>
+    <select id="pregunta1" name="evaluacionSeguridad">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <br>
+
+    <label for="pregunta2">Pregunta 2:</label>
+    <select id="pregunta2" name="evaluacionSeguridad">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <br>
+
+    <label for="pregunta3">Pregunta 3:</label>
+    <select id="pregunta3" name="evaluacionSeguridad">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <br>
+
+    <label for="pregunta4">Pregunta 4:</label>
+    <select id="pregunta4" name="evaluacionSeguridad">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <br>
+
+    <label for="pregunta5">Pregunta 5:</label>
+    <select id="pregunta5" name="evaluacionSeguridad">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <br>
+
+    <button type="submit">Guardar Evaluación de Seguridad</button>
+</form>
+
+</body>
+</html>

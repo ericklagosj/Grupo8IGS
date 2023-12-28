@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Empresa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./../static/css/formularioEmpresa.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .blue-header {
+            background-color: #3498db;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .content {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4c54af;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+        button:hover {
+            background-color: #4c54af;
+        }
+
+        select {
+            margin-bottom: 16px;
+        }
+
+        button {
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+<div id="h">
+    <div class="blue-header">
+        <h1>Formulario de Creación de Empresa</h1>
+    </div>
+</div>
+<div id =j>
+
+    <form action="/empresa/guardarEmpresa" method="post" th:object="${empresa}">
+    <p>Id: <input type="text" th:field="*{id}"/></p>
+    <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+    <p>Telefono: <input type="text" th:field="*{telefono}"/></p>
+    <p>Direccion: <input type="text" th:field="*{direccion}"/></p>
+    <p>Correo: <input type="text" th:field="*{email}"/></p>
+    <p>ID CENS: <input type="text" th:field="*{id_cens}"/></p>
+    <p>ID Anexo Tec: <input type="text" th:field="*{id_anexo_tec}"/></p>
+    <p>Promedio AT: <input type="text" th:field="*{promedio_at}"/></p>
+    <p>Promedio CENS: <input type="text" th:field="*{promedio_cens}"/></p>
+    <button type="submit">Guardar</button>
+    <button type="button" onclick="location.href='/'">Cancelar</button>
+</div>
+</form>
+</body>
+</html>

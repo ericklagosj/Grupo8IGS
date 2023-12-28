@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcular Promedio General</title>
+</head>
+<body>
+
+<h2>Calcular Promedio General</h2>
+
+<form action="/evaluaciones/calcularPromedio" method="post">
+    <label for="empresaId">ID de la Empresa:</label>
+    <input type="text" id="empresaId" name="idEmpresa" required>
+    <br>
+
+    <button type="submit">Calcular Promedio General</button>
+</form>
+
+</body>
+</html>
